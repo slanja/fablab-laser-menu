@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laser Menu | FabLab University</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #f8f9fa; }
+        .fablab-red { color: #e30613; }
+        .bg-fablab-red { background-color: #e30613; }
+        .fablab-font { font-family: 'Outfit', sans-serif; font-weight: 900; font-style: normal; letter-spacing: -0.04em}
+    </style>
+</head>
+<body class="pb-32">
+
+    <header class="bg-white border-b-4 border-red-600 shadow-sm sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 py-4 flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="flex items-center gap-4">
+                <img src="assets/logo.svg" alt="FabLab" class="h-10" onerror="this.src='https://via.placeholder.com/120x40?text=FABLAB'">
+                <h1 class="text-3xl fablab-font text-gray-900 border-l-2 border-gray-200 pl-4 leading-none">
+                    <span class="fablab-red">Laser</span> Menu
+                </h1>
+            </div>
+            <div class="relative w-full md:w-64">
+                <input type="text" id="search-input" oninput="handleSearch()" placeholder="Hledat ID..." 
+                       class="w-full bg-gray-100 border-2 border-gray-200 rounded-lg py-2 px-4 font-bold text-gray-700 focus:outline-none focus:border-red-600">
+            </div>
+            <div class="bg-gray-100 px-4 py-2 rounded-full font-bold text-sm border border-gray-200 flex items-center gap-2">
+                <span id="cart-count" class="fablab-red text-lg font-black">0</span> ks
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 py-8">
+        <div id="content-area">
+            <div class="text-center py-20 text-gray-400 font-bold italic">Načítám menu z tiskového agenta...</div>
+        </div>
+    </main>
+
+    <div id="print-bar" class="fixed bottom-0 left-0 right-0 bg-white border-t-2 border-gray-200 p-6 shadow-2xl transform translate-y-full transition-transform duration-300 z-50">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+            <div id="print-summary" class="flex flex-wrap gap-2 text-sm"></div>
+            <button onclick="sendToPrint()" class="fablab-font bg-fablab-red hover:bg-red-700 text-white py-4 px-12 rounded-xl text-xl shadow-lg active:scale-95 transition-all">
+                🚀 Odeslat do JobControlu
+            </button>
+        </div>
+    </div>
+
+    <script>
+        const API_URL = "http://localhost:5000/api";
+        let motifs = [];
+        let cart = {};
+        let searchQuery = "";
+
+        // 1. Načtení dat z Pythonu
+        async function loadMotifs() {
+            try {
+                const response = await fetch(`${API_URL}/motifs`);
+                motifs = await response.json();
+                renderContent();
+            } catch (err) {
+                document.getElementById('content-area').innerHTML = 
+                    `<div class="text-center py-20 text-red-500 font-bold text-xl">⚠️ CHYBA: Spusť nejdříve main.py!</div>`;
+            }
+        }
+
+        function renderContent() {
+            const container = document.getElementById('content-area');
+            container.innerHTML = "";
+            const filtered = motifs.filter(m => m.id.toString().includes(searchQuery));
+            const categories = [...new Set(filtered.map(m => m.category))];
+
+            categories.forEach(cat => {
+                const section = document.createElement('section');
+                section.className = "mb-12";
+                section.innerHTML = `<h2 class="fablab-font text-2xl text-gray-400 mb-6 border-b-2 border-gray-100 pb-2">${cat}</h2>`;
+                
+                const grid = document.createElement('div');
+                grid.className = "grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6";
+                grid.innerHTML = filtered.filter(m => m.category === cat).map(m => `
+                    <div class="bg-white rounded-2xl shadow-sm border border-gray-200 p-4 flex flex-col items-center">
+                        <span class="text-[10px] font-black text-gray-400 mb-2 uppercase tracking-tighter">ID ${m.id}</span>
+                        <div class="w-full aspect-square bg-gray-50 rounded-lg mb-4 flex items-center justify-center p-2 overflow-hidden">
+                            <img src="${m.src}" class="max-h-full opacity-90">
+                        </div>
+                        <div class="flex items-center gap-3 bg-gray-100 rounded-lg p-1 w-full justify-between">
+                            <button onclick="updateQty('${m.id}', -1)" class="w-8 h-8 flex items-center justify-center bg-white rounded-md shadow-sm hover:bg-red-50 text-xl font-bold">-</button>
+                            <span id="qty-${m.id}" class="font-black text-lg text-gray-800">${cart[m.id] || 0}</span>
+                            <button onclick="updateQty('${m.id}', 1)" class="w-8 h-8 flex items-center justify-center bg-white rounded-md shadow-sm hover:bg-blue-50 text-xl font-bold">+</button>
+                        </div>
+                    </div>
+                `).join('');
+                section.appendChild(grid);
+                container.appendChild(section);
+            });
+        }
+
+        function updateQty(id, change) {
+            cart[id] = (cart[id] || 0) + change;
+            if (cart[id] < 1) delete cart[id];
+            renderContent(); // Překreslíme, aby se ID neztratila z UI
+            updateCartUI();
+        }
+
+        function updateCartUI() {
+            const totalItems = Object.values(cart).reduce((a, b) => a + b, 0);
+            document.getElementById('cart-count').innerText = totalItems;
+            const bar = document.getElementById('print-bar');
+            if (totalItems > 0) {
+                bar.classList.remove('translate-y-full');
+                document.getElementById('print-summary').innerHTML = Object.entries(cart)
+                    .map(([id, q]) => `<span class="bg-gray-100 px-3 py-1 rounded font-bold text-xs">ID ${id} × <span class="fablab-red">${q}</span></span>`).join('');
+            } else { bar.classList.add('translate-y-full'); }
+        }
+
+        function handleSearch() {
+            searchQuery = document.getElementById('search-input').value.trim();
+            renderContent();
+        }
+
+        // 2. Odeslání do JobControlu (přes Python)
+        async function sendToPrint() {
+            try {
+                const response = await fetch(`${API_URL}/print`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(cart)
+                });
+                if (response.ok) {
+                    alert("✅ Odesláno do JobControlu!");
+                    cart = {}; updateCartUI(); renderContent();
+                }
+            } catch (err) { alert("❌ Chyba komunikace s main.py!"); }
+        }
+
+        loadMotifs();
+    </script>
+</body>
+</html>
