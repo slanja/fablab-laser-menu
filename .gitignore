@@ -1,0 +1,33 @@
+# --- Python ---
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+env/
+.env
+.venv/
+pip-log.txt
+pip-delete-this-directory.txt
+
+# --- OS / IDE ---
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+*.bak
+*.tmp
+
+# --- Frontend / Node ---
+node_modules/
+npm-debug.log*
+.parcel-cache
+dist/
+.output/
+
+# --- Inkscape / Grafika ---
+# Ignorujeme dočasné soubory, které si editory vytvářejí při otevření
+# Pokud ale chceš, aby SVG v assets/ zůstala, tyto řádky neupravuj.
+# (SVG v assets/svg/ se naopak nahrávat BUDOU, což je správně.)
+*.svg.bak
+*.pdf
