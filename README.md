@@ -56,9 +56,9 @@ Before you begin, ensure you have the following installed on your system:
 2.  **Install Python dependencies**:
     Install all necessary libraries using the provided requirements file:
     
-```bash
-    pip install -r server/requirements.txt
-```
+    ```bash
+        pip install -r server/requirements.txt
+    ```
 
 3.  **Verify Inkscape CLI**:
     Check if Inkscape is correctly recognized by your system by typing:
