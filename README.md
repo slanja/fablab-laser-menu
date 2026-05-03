@@ -27,14 +27,14 @@ File structure of entier project:
 ├── 🎨 client/
 │   ├── 📦 assets/
 │   │   ├── 📐 svg/          <-- Drop your folders (Categories) with motifs (ID.svg) here
-│   │   └── 🖼️ logo.svg       <-- Official FabLab logo
-│   ├── 📜 app.js            <-- Your website's brain
-│   └── 🌐 index.html        <-- User interface (Tailwind UI)
+│   │   └── 🖼️ logo.svg       
+│   ├── 📜 app.js            
+│   └── 🌐 index.html        
 ├── 🖥️ server/
-│   ├── 🐍 main.py           <-- Print agent and local server
-│   └── 📄 requirements.txt  <-- Python dependencies (flask, pywin32, etc.)
-├── 🕵️ .gitignore            <-- List of things Git should ignore
-└── 📖 README.md             <-- The document you're reading right now       
+│   ├── 🐍 main.py          
+│   └── 📄 requirements.txt  
+├── 🕵️ .gitignore            
+└── 📖 README.md                    
 ```
 
 ## 🛠️ Installation
