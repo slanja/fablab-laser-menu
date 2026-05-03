@@ -76,8 +76,8 @@ python server/main.py
 ```
 
 ### 2. Accessing the Menu
-*   **On the Laser PC:** The script is designed to automatically open a clean, app-like browser window (Firefox or Chrome). If it doesn't open automatically, simply go to `http://localhost:3000/\client/`.
-*   **From Other Devices:** Students can access the menu from their phones or tablets by connecting to the same Wi-Fi and entering your computer's IP address: `http://<your-pc-ip>:3000/\client/`.
+*   **On the Laser PC:** The script is designed to automatically open a clean, app-like browser window (Firefox or Chrome). If it doesn't open automatically, simply go to `http://localhost:5000/`.
+*   **From Other Devices:** Students can access the menu from their phones or laptops by connecting to the same Wi-Fi and entering your computer's IP address: `http://<your-pc-ip>:5000`.
 
 ### 🧪 Testing & Simulation
 If you are developing from home or don't have a laser cutter connected, you can enable **Simulation Mode** in `server/main.py`. 
@@ -88,7 +88,7 @@ SIMULATION_MODE = True
 In this mode, clicking "Print" won't actually call Inkscape or the printer; instead, it will log a success message to your terminal, allowing you to test the full web workflow.
 
 ### 💡 Pro Tip: Create a Desktop Shortcut
-For a "one-click" experience in the lab, create a file named `Start_Laser_Menu.bat` on your Windows desktop with the following content:
+For a "one-click" experience in the lab, create a file named `Laser_Menu.bat` on your Windows desktop with the following content:
 ```bash
 @echo off
 python server/main.py
