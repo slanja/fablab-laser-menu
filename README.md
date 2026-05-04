@@ -57,7 +57,7 @@ Before you begin, ensure you have the following installed on your system:
     Install all necessary libraries using the provided requirements file:
     
     ```bash
-        pip install -r server/requirements.txt
+    pip install -r server/requirements.txt
     ```
 
 3.  **Verify Inkscape CLI**:
