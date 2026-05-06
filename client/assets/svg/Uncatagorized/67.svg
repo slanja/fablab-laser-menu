@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="41.008999mm"
+   height="41.008999mm"
+   viewBox="0 0 41.008999 41.008999"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.4.2 (f4327f4, 2025-05-13)"
+   sodipodi:docname="67.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     inkscape:zoom="1.4513545"
+     inkscape:cx="131.94571"
+     inkscape:cy="45.130255"
+     inkscape:window-width="1920"
+     inkscape:window-height="1094"
+     inkscape:window-x="-11"
+     inkscape:window-y="-11"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1"
+     showguides="false" />
+  <defs
+     id="defs1" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(333.37504,1257.5646)">
+    <circle
+       style="fill:none;stroke:#ff0000;stroke-width:0.1;stroke-dasharray:none"
+       id="path788-8-1-8-1-9-2-56-8-1-7-71-3-2-7-5-4-5"
+       cx="-312.87054"
+       cy="-1237.0601"
+       r="19.954653" />
+    <ellipse
+       style="fill:none;stroke:#ff00ff;stroke-width:0.1;stroke-dasharray:none;stroke-opacity:1"
+       id="path1138-9-4-0-0-1-2-4-9-7-82-6-75-2-1-90-2-7"
+       cx="-312.87054"
+       cy="-1237.0601"
+       rx="18.492125"
+       ry="18.492126" />
+    <circle
+       style="fill:none;stroke:#0000ff;stroke-width:0.1;stroke-linecap:round;stroke-dasharray:none;stroke-opacity:1;paint-order:markers stroke fill"
+       id="path13019-1-33-6-2-4-0-0-76-9-2-75-3-6"
+       cx="-312.87054"
+       cy="-1252.071"
+       r="2" />
+    <text
+       xml:space="preserve"
+       style="font-size:25.4px;line-height:0;font-family:'Vafle VUT';-inkscape-font-specification:'Vafle VUT, Normal';text-align:start;letter-spacing:-0.780521px;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#ffffff;stroke:#000000;stroke-width:2.1276"
+       x="-327.50778"
+       y="-1226.8351"
+       id="text1"><tspan
+         sodipodi:role="line"
+         id="tspan1"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.4px;line-height:0;font-family:'Comic Sans MS';-inkscape-font-specification:'Comic Sans MS, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;letter-spacing:-0.780521px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:2.1276"
+         x="-327.50778"
+         y="-1226.8351">67</tspan></text>
+  </g>
+</svg>
